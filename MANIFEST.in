@@ -1,0 +1,3 @@
+recursive-include aishield *.py *.json
+include LICENSE
+include README.md

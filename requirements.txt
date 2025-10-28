@@ -1,0 +1,4 @@
+pyperclip
+tree-sitter
+tree-sitter-javascript
+tree-sitter-c-sharp
