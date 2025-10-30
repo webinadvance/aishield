@@ -529,26 +529,32 @@ def main():
         print("   (Enter text or press Enter to skip)\n")
         user_prompt = input("📝 Your prompt/task: ").strip()
 
-        # Re-obfuscate prompt if provided
-        obfuscated_prompt = None
-        if user_prompt:
-            obfuscated_prompt = engine.obfuscate_text_section(user_prompt, word_mapping, identifier_mapping)
+        # If no prompt, copy raw code only
+        if not user_prompt:
+            input("\n🤖 Press Enter to copy result to clipboard...")
+            try:
+                pyperclip.copy(result)
+                print("✅ Copied to clipboard!")
+            except Exception as e:
+                print(f"⚠️  Warning: Could not copy to clipboard: {e}")
+                print("\n📋 Output:")
+                print(result)
+            return 0
 
-        # Build markdown output
+        # Re-obfuscate prompt if provided
+        obfuscated_prompt = engine.obfuscate_text_section(user_prompt, word_mapping, identifier_mapping)
+
+        # Build markdown output with full sections
         md_output = ""
-        if obfuscated_prompt:
-            md_output += "## PROMPT\n\n"
-            md_output += f"{obfuscated_prompt}\n\n"
+        md_output += "## PROMPT\n\n"
+        md_output += f"{obfuscated_prompt}\n\n"
 
         md_output += "## CODE\n\n"
         md_output += f"```\n{result}\n```\n\n"
 
         # Add TASK section
         md_output += "## TASK\n\n"
-        if user_prompt:
-            md_output += f"{user_prompt}\n\n"
-        else:
-            md_output += "[No task provided]\n\n"
+        md_output += f"{user_prompt}\n\n"
 
         # Add AI instructions/disclaimer
         md_output += "## AI INSTRUCTIONS\n\n"
