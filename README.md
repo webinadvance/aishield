@@ -169,6 +169,33 @@ See existing adapters (`languages/csharp/adapter.py`, `languages/javascript/adap
 - **String Literals:** Obfuscates all strings; may break hardcoded dependencies
 - **Dynamic Code:** Cannot handle runtime code generation or reflection-based logic
 
+## 🚀 Coming Soon
+
+### Claude Code IDE Integration with Custom Proxy
+
+**Seamless in-editor obfuscation directly from Claude Code environment**
+
+A native Claude Code extension enabling real-time code obfuscation through a custom HTTP proxy layer:
+
+- **Proxy Architecture:** Custom reverse proxy middleware intercepts HTTP requests between Claude Code LSP client and obfuscation engine
+- **Streaming Support:** Chunked transfer encoding for large file obfuscation with progress callbacks
+- **AST Streaming:** Incremental Abstract Syntax Tree parsing for near-instantaneous feedback on identifier changes
+- **LSP Integration:** Language Server Protocol hooks for syntax highlighting, diagnostics, and code lens features
+- **Multi-Adapter Pipeline:** Automatic language detection via file extension + content sniffing with fallback detection
+- **Session-Aware Mapping:** Persistent obfuscation mappings per workspace session with automatic cleanup
+- **Real-time Diffing:** Visual diff display showing original vs. obfuscated code side-by-side with line-by-line mapping
+- **Configuration Schema:** JSON Schema validation for `aishield.json` workspace configuration
+- **Telemetry-Free:** No external analytics; all processing stays local with optional audit logging
+
+**Expected Features:**
+- ✨ One-click obfuscation from context menu
+- 📊 Obfuscation metrics dashboard
+- 🔄 Batch processing for entire projects
+- 🔐 Encrypted mapping storage with passphrase protection
+- 🧪 Test suite generation for obfuscated code validation
+
+---
+
 ## Architecture
 
 ```
