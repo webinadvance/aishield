@@ -204,7 +204,7 @@ BSD 3-Clause License - see [LICENSE](LICENSE)
 ## Support
 
 - **Issues:** [GitHub Issues](https://github.com/webinadvance/aishield/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/webinadvance/aishield/discussions)
+- **GitHub:** [webinadvance/aishield](https://github.com/webinadvance/aishield)
 
 ---
 
