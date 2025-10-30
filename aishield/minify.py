@@ -18,7 +18,13 @@ from pathlib import Path
 import importlib.util
 import sys
 
-from .base import LanguageAdapter
+# Handle both direct execution and module import
+if __package__:
+    from .base import LanguageAdapter
+else:
+    # When run directly, add the parent directory to the path
+    sys.path.insert(0, str(Path(__file__).parent))
+    from base import LanguageAdapter
 
 try:
     import pyperclip
@@ -454,6 +460,11 @@ def main():
             print("   Copy some code to clipboard and try again.")
             return 1
 
+        # Ask for optional AI prompt
+        print("\n💡 Optional: Add AI prompt/task:")
+        print("   (Enter text or press Enter to skip)\n")
+        user_prompt = input("📝 Your prompt/task: ").strip()
+
         detected = registry.detect_language(content)
         if detected:
             print(f"🔍 Auto-detected: {detected.upper()}")
@@ -501,6 +512,11 @@ def main():
             print("   The code may contain syntax errors or unsupported constructs.")
             return 1
 
+        # Obfuscate prompt if provided
+        obfuscated_prompt = None
+        if user_prompt:
+            obfuscated_prompt = engine.obfuscate_text_section(user_prompt, word_mapping, identifier_mapping)
+
         # Display results
         result_size = len(result)
         ratio = ((original_size - result_size) / original_size * 100) if original_size > 0 else 0
@@ -518,16 +534,25 @@ def main():
         except Exception as e:
             print(f"⚠️  Warning: Could not save mapping: {e}")
 
+        # Build markdown output
+        md_output = ""
+        if obfuscated_prompt:
+            md_output += "## PROMPT\n\n"
+            md_output += f"{obfuscated_prompt}\n\n"
+
+        md_output += "## CODE\n\n"
+        md_output += f"```\n{result}\n```"
+
         input("\n🤖 Press Enter to copy result to clipboard...")
 
         # Copy to clipboard
         try:
-            pyperclip.copy(result)
+            pyperclip.copy(md_output)
             print("✅ Copied to clipboard!")
         except Exception as e:
             print(f"⚠️  Warning: Could not copy to clipboard: {e}")
             print("\n📋 Output:")
-            print(result)
+            print(md_output)
 
         return 0
 
