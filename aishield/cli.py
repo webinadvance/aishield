@@ -2,7 +2,6 @@
 """CLI entry point for code-defender"""
 
 import sys
-import argparse
 from .minify import main as obfuscate_main
 from .unminify import main as deobfuscate_main
 

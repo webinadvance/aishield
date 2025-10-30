@@ -11,7 +11,6 @@ SPDX-License-Identifier: BSD-3-Clause
 
 from tree_sitter import Language, Parser
 import tree_sitter_c_sharp as tscs
-import sys
 from pathlib import Path
 
 try:

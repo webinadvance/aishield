@@ -132,7 +132,7 @@ def main():
 
             # Obfuscate
             print("🔐 Obfuscating...")
-            obfuscated, word_mapping, identifier_mapping, comment_mapping = engine.process_content(
+            obfuscated, word_mapping, identifier_mapping, comment_mapping, string_mapping = engine.process_content(
                 result.original_code
             )
             result.obfuscated_code = engine.minify_code(obfuscated)
