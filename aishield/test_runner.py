@@ -9,8 +9,8 @@ import json
 import sys
 from pathlib import Path
 
-from minify import LanguageRegistry, ObfuscationEngine
-from unminify import deobfuscate_text, load_mapping
+from .minify import LanguageRegistry, ObfuscationEngine
+from .unminify import deobfuscate_text, load_mapping
 
 # Test files
 TEST_FILES = [
@@ -146,7 +146,7 @@ def main():
 
             # Save mapping
             print("💾 Saving mapping...")
-            engine.save_mapping(word_mapping, identifier_mapping, comment_mapping)
+            engine.save_mapping(word_mapping, identifier_mapping, comment_mapping, string_mapping)
 
             # Load mapping
             print("📂 Loading mapping for deobfuscation...")
