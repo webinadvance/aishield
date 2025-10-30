@@ -35,24 +35,27 @@ pip install code-defender
 
 ## Quick Start
 
-### CLI Usage
+### Basic Usage
 
 ```bash
-code-defender
+code-defender              # Obfuscate code (interactive)
+code-defender -u           # Unminify code (interactive)
+code-defender --help       # Show help message
+code-defender --version    # Show version
 ```
 
-**Workflow:**
+### Workflow
+
 1. Copy code to clipboard
-2. Run `code-defender`
+2. Run `code-defender` (or `code-defender -u` for unminifying)
 3. Select language (auto-detected) or press Enter to skip
-4. Obfuscated code copied to clipboard
+4. Result copied to clipboard
+5. Mapping saved to `obfuscation_mapping_<language>.json`
 
-### Language Support
+### Supported Languages
 
-```bash
-code-defender
-# Loaded languages: csharp, javascript
-```
+- **C# / .NET**
+- **JavaScript / TypeScript**
 
 ## How It Works
 
