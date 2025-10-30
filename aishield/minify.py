@@ -531,10 +531,9 @@ def main():
 
         # If no prompt, copy raw code only
         if not user_prompt:
-            input("\n🤖 Press Enter to copy result to clipboard...")
             try:
                 pyperclip.copy(result)
-                print("✅ Copied to clipboard!")
+                print("\n✅ Copied to clipboard!")
             except Exception as e:
                 print(f"⚠️  Warning: Could not copy to clipboard: {e}")
                 print("\n📋 Output:")
