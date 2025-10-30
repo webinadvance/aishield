@@ -460,11 +460,6 @@ def main():
             print("   Copy some code to clipboard and try again.")
             return 1
 
-        # Ask for optional AI prompt
-        print("\n💡 Optional: Add AI prompt/task:")
-        print("   (Enter text or press Enter to skip)\n")
-        user_prompt = input("📝 Your prompt/task: ").strip()
-
         detected = registry.detect_language(content)
         if detected:
             print(f"🔍 Auto-detected: {detected.upper()}")
@@ -512,11 +507,6 @@ def main():
             print("   The code may contain syntax errors or unsupported constructs.")
             return 1
 
-        # Obfuscate prompt if provided
-        obfuscated_prompt = None
-        if user_prompt:
-            obfuscated_prompt = engine.obfuscate_text_section(user_prompt, word_mapping, identifier_mapping)
-
         # Display results
         result_size = len(result)
         ratio = ((original_size - result_size) / original_size * 100) if original_size > 0 else 0
@@ -533,6 +523,16 @@ def main():
             print(f"💾 Mapping: {engine.get_mapping_file()}")
         except Exception as e:
             print(f"⚠️  Warning: Could not save mapping: {e}")
+
+        # Ask for optional AI prompt (after showing results)
+        print("\n💡 Optional: Add AI prompt/task:")
+        print("   (Enter text or press Enter to skip)\n")
+        user_prompt = input("📝 Your prompt/task: ").strip()
+
+        # Re-obfuscate prompt if provided
+        obfuscated_prompt = None
+        if user_prompt:
+            obfuscated_prompt = engine.obfuscate_text_section(user_prompt, word_mapping, identifier_mapping)
 
         # Build markdown output
         md_output = ""
