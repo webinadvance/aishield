@@ -209,3 +209,8 @@ BSD 3-Clause License - see [LICENSE](LICENSE)
 ---
 
 **⚠️ Note:** AIShield is a defensive obfuscation tool. Use responsibly and in compliance with applicable laws and regulations.
+
+---
+
+💜 **Made with love and ❤️ in collaboration with Claude** 🤖
+*Powered by intelligent code analysis and obfuscation techniques*
