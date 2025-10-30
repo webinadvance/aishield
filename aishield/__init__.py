@@ -1,6 +1,6 @@
 """AIShield - Intelligent Code Obfuscator Against AI Detection"""
 
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 __author__ = "AIShield Contributors"
 
 from .minify import ObfuscationEngine, LanguageRegistry

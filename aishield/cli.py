@@ -57,7 +57,7 @@ def main():
     if len(sys.argv) > 1:
         first_arg = sys.argv[1]
 
-        if first_arg in ['-h', '--help', 'help']:
+        if first_arg in ['-h', '--h', '--help', 'help']:
             print_help()
             return
 
