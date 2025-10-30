@@ -22,12 +22,14 @@ COMMANDS:
 OPTIONS:
     -h, --help      Show this help message
     -v, --version   Show version information
+    -u              Unminify mode (shorthand for --unminify)
 
 EXAMPLES:
     code-defender                    # Interactive obfuscation
     code-defender --help             # Show this help message
+    code-defender -u                 # Interactive unminification (short form)
+    code-defender --unminify         # Interactive unminification
     code-defender unminify           # Interactive unminification
-    code-defender --unminify         # Unminify code
 
 SUPPORTED LANGUAGES:
     - C# / .NET
@@ -64,7 +66,7 @@ def main():
             return
 
         # Check for unminify command
-        if first_arg in ['--unminify', '--deobfuscate', 'unminify', 'deobfuscate']:
+        if first_arg in ['-u', '--unminify', '--deobfuscate', 'unminify', 'deobfuscate']:
             deobfuscate_main()
             return
 
