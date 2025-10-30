@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "code-defender"
-version = "1.1.4"
+version = "1.1.5"
 description = "Intelligent code obfuscator to protect your code from AI-based analysis and reverse engineering"
 readme = "README.md"
 requires-python = ">=3.8"
