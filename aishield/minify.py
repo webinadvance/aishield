@@ -460,6 +460,7 @@ def main():
             print("   Copy some code to clipboard and try again.")
             return 1
 
+        is_text_mode = False
         detected = registry.detect_language(content)
         if detected:
             print(f"🔍 Auto-detected: {detected.upper()}")
@@ -469,7 +470,11 @@ def main():
             else:
                 language = detected
         else:
-            language = input(f"Language (default: {default_lang}): ").strip().lower() or default_lang
+            print("🤔 No language detected. Assuming plain text.")
+            content = "@prompt\n" + content
+            language = default_lang
+            is_text_mode = True
+            print(f"✅ Using TEXT mode with {default_lang} mappings.\n")
 
         adapter = registry.get_adapter(language)
         if not adapter:
@@ -501,7 +506,8 @@ def main():
         # Obfuscate the code
         try:
             result, word_mapping, identifier_mapping, comment_mapping, string_mapping = engine.process_content(content)
-            result = engine.minify_code(result)
+            if not is_text_mode:
+                result = engine.minify_code(result)
         except Exception as e:
             print(f"❌ Error during obfuscation: {e}")
             print("   The code may contain syntax errors or unsupported constructs.")
